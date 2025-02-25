@@ -1,0 +1,102 @@
+/* Estilos para la sección de productos */
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-image {
+    width: 80%; 
+    height: 200px; 
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  
+  .product-info h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .product-info p {
+    color: #777;
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .price {
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .add-to-cart {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #218838;
+  }
+
+  footer.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;  /* Esto empuja el footer hacia el fondo */
+  }
+  
+  footer.footer p {
+    margin: 5px;
+    font-size: 1rem;
+  }
+  
+  footer.footer p:first-child {
+    font-weight: bold;
+  }
+  
+  @media (max-width: 1024px) {
+    .products-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .products-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .products-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  

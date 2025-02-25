@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad Tema 11</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <div id="selectContainer"></div>
+
+    <br>
+    <div id="datos">La tabla se cargará aquí...</div>
+
+    <script>
+
+        // Realiza una solicitud AJAX 
+        function funAjax(url, callback) {
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: callback,
+                error: function (xhr, status, error) {
+                    console.error("Error en la solicitud AJAX:", error);
+                    console.error("Respuesta del servidor:", xhr.responseText);
+                    $("#datos").html("Error al conectar con el servidor.");
+                }
+            });
+        }
+
+        // Carga la lista de nombres
+
+        function selectNombre() {
+            var $selectContainer = $("#selectContainer");
+            var $select = $("<select>", { id: "nombreSelect" }).on("change", function () {
+                mostrarDatosUsuario(this.value); // Mostrar datos del usuario seleccionado
+            });
+
+            // Agregar una opción por defecto
+            $select.append($("<option>", { value: "", text: "Seleccione un nombre" }));
+            $selectContainer.empty().append($select);
+
+            // Llamada AJAX para obtener los nombres
+            funAjax("jsonGET.php", function (response) {
+                if (Array.isArray(response) && response.length > 0) {
+                    $.each(response, function (index, item) {
+                        if (item.id && item.nombre) {
+                            $select.append($("<option>", { value: item.id, text: item.nombre }));
+                        } else {
+                            console.warn("Elemento con datos incompletos:", item);
+                        }
+                    });
+                } else {
+                    $("#datos").html("No se encontraron datos para cargar en el selector.");
+                    console.error("Respuesta inesperada:", response);
+                }
+            });
+        }
+
+        // Muestra los datos del usuario seleccionado
+
+        function mostrarDatosUsuario(id) {
+            if (id) {
+                funAjax(`jsonGET.php?id=${id}`, function (response) {
+                    if (Array.isArray(response) && response.length > 0) {
+                        let usuario = response[0];
+                        // Crear tabla con los datos del usuario
+                        $("#datos").html(
+                            '<table border="1">' +
+                            '<tr><th>ID</th><td>' + usuario.id + '</td></tr>' +
+                            '<tr><th>Nombre</th><td>' + usuario.nombre + '</td></tr>' +
+                            '<tr><th>Apellidos</th><td>' + usuario.apellidos  + '</td></tr>' +
+                            '<tr><th>Ciudad</th><td>' + usuario.ciudad  + '</td></tr>' +
+                            '</table>'
+                        );
+
+                    } else {
+                        $("#datos").html("No se encontraron datos del usuario.");
+                        console.error("Respuesta inesperada al consultar usuario:", response);
+                    }
+                });
+            } else {
+                $("#datos").html("Seleccione un nombre para ver los datos."); // Limpiar el contenedor
+            }
+        }
+
+        // Inicializar el selector al cargar la página
+        window.onload = selectNombre;
+    </script>
+</body>
+
+</html>

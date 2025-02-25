@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script>
+    // Empezamos autoinvocando a la función
+
+    // La F1 muestra el primer menu 
+    (function() {
+            function F1() {
+                // Menú principal
+                let opcion = prompt("Elija una opción: \n1. Elija figura (cubo, esfera, cilindro). \n2. Introduzca valores para la figura. \n3. Calcule volumen. \n4. Calcule área. \n5. Salir.");
+
+                switch (opcion) {
+                    case "1":
+                        figura = elegirFigura();
+                        break;
+                    case "2":
+                        if (figura) {
+                            dimensiones = obtenerDimensiones(figura);
+                        } else {
+                            alert("Primero debe seleccionar una figura.");
+                        }
+                        break;
+                    case "3":
+                        if (dimensiones) {
+                            calcularVolumen(figura, dimensiones);
+                        } else {
+                            alert("Primero debe introducir las dimensiones de la figura.");
+                        }
+                        break;
+                    case "4":
+                        if (dimensiones) {
+                            calcularArea(figura, dimensiones);
+                        } else {
+                            alert("Primero debe introducir las dimensiones de la figura.");
+                        }
+                        break;
+                    case "5":
+                        alert("Programa finalizado.");
+                        return;  // Sale del programa
+                    default:
+                        alert("Introduzca otro.");
+                        break;
+                }
+                F1(); 
+            }
+
+            // F2 Elegir la figura geométrica
+            function elegirFigura() {
+                let figura = prompt("Elija una figura: \n1. Cubo. \n2. Esfera. \n3. Cilindro.");
+                switch (figura) {
+                    case "1":
+                        alert("Has elegido el cubo.");
+                        return "cubo";
+                    case "2":
+                        alert("Has elegido la esfera.");
+                        return "esfera";
+                    case "3":
+                        alert("Has elegido el cilindro.");
+                        return "cilindro";
+                    default:
+                        alert("Opción inválida. Intente de nuevo.");
+                        return elegirFigura(); // Volver a pedir la figura si la opción es inválida
+                }
+            }
+
+            // F2: Solicitar dimensiones
+            function obtenerDimensiones(figura) {
+                let dimensiones = {};
+                switch (figura) {
+                    case "cubo":
+                        dimensiones.lado = parseFloat(prompt("Ingrese el lado del cubo (cm):"));
+                        break;
+                    case "esfera":
+                        dimensiones.radio = parseFloat(prompt("Ingrese el radio de la esfera (cm):"));
+                        break;
+                    case "cilindro":
+                        dimensiones.radio = parseFloat(prompt("Ingrese el radio de la base del cilindro (cm):"));
+                        dimensiones.altura = parseFloat(prompt("Ingrese la altura del cilindro (cm):"));
+                        break;
+                    default:
+                        alert("ERROR.");
+                        return obtenerDimensiones(figura);
+                }
+                return dimensiones;
+            }
+
+            //*********** EL toFixed() REDONDEA HASTA EL NUMERO DE DECIMALS QUE INDIQUEMOS***********
+            
+            // F3: Calcular el volumen
+            function calcularVolumen(figura, dimensiones) {
+                let volumen;
+                switch (figura) {
+                    case "cubo":
+                        volumen = dimensiones.lado * dimensiones.lado * dimensiones.lado;
+                        alert(`El volumen del cubo es ${volumen.toFixed(2)}.`);
+                        break;
+                    case "esfera":
+                        volumen = volumen = (4 / 3) * Math.PI * dimensiones.radio * dimensiones.radio * dimensiones.radio;
+                        alert(`El volumen de la esfera es ${volumen.toFixed(2)} .`);
+                        break;
+                    case "cilindro":
+                        volumen = Math.PI * dimensiones.radio * dimensiones.radio * dimensiones.altura;
+                        alert(`El volumen del cilindro es ${volumen.toFixed(2)} .`);
+                        break;
+                    default:
+                        alert("ERROR.");
+                }
+            }
+
+            // F4: Calcular el área
+            function calcularArea(figura, dimensiones) {
+                let area;
+                switch (figura) {
+                    case "cubo":
+                        area = 6 * (dimensiones.lado * dimensiones.lado);
+                        alert(`El área del cubo es ${area.toFixed(2)} .`);
+                        break;
+                    case "esfera":
+                        area = 4 * Math.PI * dimensiones.radio * dimensiones.radio;
+                        alert(`El área de la esfera es ${area.toFixed(2)}.`);
+                        break;
+                    case "cilindro":
+                        area = 2 * Math.PI * dimensiones.radio * (dimensiones.radio + dimensiones.altura);
+                        alert(`El área del cilindro es ${area.toFixed(2)}.`);
+                        break;
+                    default:
+                        alert("ERROR.");
+                }
+            }
+
+            // Inicializar el programa
+            let figura = null;
+            let dimensiones = null;
+            F1(); // Ejecutar el menú al cargar la página
+        })();
+
+  </script>
+</head>
+<body>
+</body>
+</html>
