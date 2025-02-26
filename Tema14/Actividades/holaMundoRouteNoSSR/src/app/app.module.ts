@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -28,7 +34,13 @@ import { ChildBComponent } from './child-b/child-b.component';
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDividerModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

@@ -1,4 +1,6 @@
-<h2>Bienvenidos a nuestra tienda</h2>
+<mat-toolbar color="primary">
+  <span>Bienvenidos a nuestra tienda</span>
+</mat-toolbar>
 
 <section class="store-description">
   <p>
@@ -6,15 +8,24 @@
   </p>
   <img src="/tienda.jpg" alt="Imagen de la tienda" class="store-image">
 </section>
-<nav>
-  <ul>
-    <li><a routerLink="/home/child-a">Conoce nuestros personal</a></li>
-    <li><a routerLink="/home/child-b">Ofertas especiales</a></li>
-  </ul>
-</nav>
+
+<mat-nav-list>
+  <mat-list-item>
+    <a mat-button routerLink="/home/child-a">Conoce nuestro personal</a>
+  </mat-list-item>
+  <mat-list-item>
+    <a mat-button routerLink="/home/child-b">Ofertas especiales</a>
+  </mat-list-item>
+</mat-nav-list>
+
+<mat-divider></mat-divider>
 
 <footer class="footer">
-  <p>&copy; 2025 Tienda Informática | Todos los derechos reservados.</p>
-  <p>David López Núñez</p>
+  <mat-toolbar color="accent">
+    <span>&copy; 2025 Tienda Informática | Todos los derechos reservados.</span>
+    <span class="spacer"></span>
+    <span>David López Núñez</span>
+  </mat-toolbar>
 </footer>
+
 <router-outlet></router-outlet>

@@ -1,87 +1,25 @@
-<h2>Productos</h2>
+<mat-toolbar color="primary">
+  <span>Productos</span>
+</mat-toolbar>
 
 <section class="products-container">
-  <div class="product-card">
-    <img src="/monitor.avif" alt="Producto 1" class="product-image">
-    <div class="product-info">
-      <h3>Monitor</h3>
-      <p>Monitor 27 pulgadas</p>
-      <p class="price">150.99€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/torre.jpg" alt="Producto 2" class="product-image">
-    <div class="product-info">
-      <h3>Pc</h3>
-      <p>Forgeon Mithril ARGB Mesh Torre ATX Negra</p>
-      <p class="price">$129.99€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/iphone.jpg" alt="Producto 3" class="product-image">
-    <div class="product-info">
-      <h3>Iphone</h3>
-      <p>Iphone 15 pro max</p>
-      <p class="price">999.99€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/samsumg.jpg" alt="Producto 4" class="product-image">
-    <div class="product-info">
-      <h3>Samsung</h3>
-      <p>Samsung s24 ultra</p>
-      <p class="price">800€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/applewatch.jpg" alt="Producto 5" class="product-image">
-    <div class="product-info">
-      <h3>Apple watch</h3>
-      <p>Apple watch ultra</p>
-      <p class="price">500€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/TABLET.jpg" alt="Producto 6" class="product-image">
-    <div class="product-info">
-      <h3>Ipad</h3>
-      <p>Ipad Pro</p>
-      <p class="price">700€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/play.jpg" alt="Producto 7" class="product-image">
-    <div class="product-info">
-      <h3>Playstation 5</h3>
-      <p>Playstation 5 standar</p>
-      <p class="price">499.99€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
-
-  <div class="product-card">
-    <img src="/xbox.jpg" alt="Producto 8" class="product-image">
-    <div class="product-info">
-      <h3>Xbox</h3>
-      <p>Xbox series x</p>
-      <p class="price">399.99€</p>
-      <button class="add-to-cart">Añadir al carrito</button>
-    </div>
-  </div>
+  <mat-card class="product-card" *ngFor="let product of products">
+    <img mat-card-image [src]="product.image" [alt]="product.name" class="product-image">
+    <mat-card-content class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p class="price">{{ product.price }}€</p>
+      <button mat-raised-button color="primary" class="add-to-cart">Añadir al carrito</button>
+    </mat-card-content>
+  </mat-card>
 </section>
-<footer class="footer">
-    <p>&copy; 2025 Tienda Informática | Todos los derechos reservados.</p>
-    <p>David López Núñez</p>
+
+<mat-divider></mat-divider>
+
+<footer class="footer mat-elevation-z4">
+  <mat-toolbar color="accent">
+    <span>&copy; 2025 Tienda Informática | Todos los derechos reservados.</span>
+    <span class="spacer"></span>
+    <span>David López Núñez</span>
+  </mat-toolbar>
 </footer>
