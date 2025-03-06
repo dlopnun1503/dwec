@@ -1,0 +1,28 @@
+<h2>Lista de Productos</h2>
+
+<!-- Formulario para añadir productos -->
+<form (ngSubmit)="addProduct()">
+  <input [(ngModel)]="newProduct.name" name="name" placeholder="Nombre del producto" required />
+  <input [(ngModel)]="newProduct.price" name="price" placeholder="Precio" type="number" required />
+  <button type="submit">Agregar Producto</button>
+</form>
+
+<!-- Tabla para mostrar productos -->
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.price | currency }}</td>
+      <td>
+        <button class="delete-btn" (click)="deleteProduct(product)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
