@@ -4,6 +4,7 @@
 <form (ngSubmit)="addProduct()">
   <input [(ngModel)]="newProduct.name" name="name" placeholder="Nombre del producto" required />
   <input [(ngModel)]="newProduct.price" name="price" placeholder="Precio" type="number" required />
+  <input [(ngModel)]="newProduct.url" name="url" placeholder="Url" required />
   <button type="submit">Agregar Producto</button>
 </form>
 
@@ -13,16 +14,18 @@
     <tr>
       <th>Nombre</th>
       <th>Precio</th>
-      <th>Acciones</th>
+      <th>Url</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let product of products">
       <td>{{ product.name }}</td>
       <td>{{ product.price | currency }}</td>
-      <td>
-        <button class="delete-btn" (click)="deleteProduct(product)">Eliminar</button>
-      </td>
+      <!-- Mostrar la imagen si hay URL -->
+      <img [src]="product.url" alt="{{ product.name }}" class="product-image" *ngIf="product.url" />
+    
+      <!-- En caso de que no haya URL, mostrar algo como texto -->
+      <p *ngIf="!product.url">No image available</p>
     </tr>
   </tbody>
 </table>

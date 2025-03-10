@@ -4,6 +4,7 @@ import { FirebaseService } from '../../core/firebase.service';
 interface Product {
   name: string;
   price: number;
+  url: string;
 }
 
 @Component({
@@ -14,34 +15,25 @@ interface Product {
 })
 export class ItemListComponent implements OnInit {
   items: any[] = [];
-  newItem: string = '';
+  products: Product[] = [];
+  newProduct: Product = { name: '', price: 0, url: '' };
 
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit() {
     // Escuchar cambios en la colección
     this.firebaseService.getItems().subscribe(data => {
-      this.items = data;
+      this.products = data;
     });
   }
-}
-
-  export class ProductListComponent {
-  products: Product[] = [
-    { name: 'Producto 1', price: 100 },
-    { name: 'Producto 2', price: 200 },
-  ];
-
-  newProduct: Product = { name: '', price: 0 };
 
   addProduct() {
     if (this.newProduct.name.trim() && this.newProduct.price > 0) {
-      this.products.push({ ...this.newProduct });
-      this.newProduct = { name: '', price: 0 };
+      this.firebaseService.addItem(this.newProduct).then(() => {
+        this.newProduct = { name: '', price: 0, url: '' };
+      }).catch(error => {
+        console.error('Error adding product: ', error);
+      });
     }
-  }
-
-  deleteProduct(product: Product) {
-    this.products = this.products.filter(p => p !== product);
   }
 }

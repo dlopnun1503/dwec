@@ -8,15 +8,13 @@ import { Observable } from 'rxjs';
 export class FirebaseService {
   constructor(private firestore: Firestore) {}
 
-  // Agregar un nuevo elemento a la colección 'items'
-  addItem(item: any) {
+  addItem(product: any) {
     const itemsCollection = collection(this.firestore, 'products');
-    return addDoc(itemsCollection, item);
+    return addDoc(itemsCollection, product);
   }
 
-  // Obtener los datos en tiempo real de la colección 'items'
   getItems(): Observable<any[]> {
     const itemsCollection = collection(this.firestore, 'products');
-    return collectionData(itemsCollection, { idField: 'id' }) as Observable<any[]>;
+    return collectionData(itemsCollection, { idField: 'id' }) as Observable<any[]>
   }
 }

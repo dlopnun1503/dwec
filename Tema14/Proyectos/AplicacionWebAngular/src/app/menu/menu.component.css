@@ -1,0 +1,60 @@
+/* General */
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3498db; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Botones */
+  mat-toolbar button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+  }
+  
+  mat-toolbar button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05); /* Efecto de ampliación en hover */
+  }
+  
+  /* Estilo de botones deshabilitados */
+  mat-toolbar button[disabled] {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  /* Barra divisoria (si tienes alguna) */
+  mat-divider {
+    margin: 20px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  /* Router-outlet */
+  router-outlet {
+    display: block;
+    margin-top: 20px;
+  }
+  
+  /* Estilo para elementos de la lista o menú dentro del mat-toolbar */
+  mat-toolbar mat-button {
+    font-size: 16px;
+    text-transform: uppercase; /* Texto en mayúsculas */
+  }
+  
+  /* Espaciado entre los botones */
+  mat-toolbar button {
+    margin: 0 10px;
+  }
+  
